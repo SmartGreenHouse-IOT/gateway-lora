@@ -22,9 +22,11 @@ void RecordData(String rx, String tx, String data) {
   
   if (httpResponseCode > 0) {
     String response = http.getString();
-    logSuccess("Resposta da API: " + response);
+    logSuccess("Dados enviados com sucesso");
+    // logSuccess(response);
   } else {
-    logError("Erro na requisição POST, código: " + String(httpResponseCode));
+    logError("Erro na requisição POST");
+    // logError(http.errorToString(httpResponseCode));
   }
   
   // Finalizar a conexão HTTP
