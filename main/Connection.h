@@ -13,8 +13,8 @@ void RecordData(String rx, String tx, String data) {
   // Definir o conteúdo do payload usando as variáveis rx e tx
   String payload = "rx=" + rx + "&tx=" + tx + "&data=" + data;
 
-  // Definir o cabeçalho content-type para application/json
-  http.addHeader("Content-Type", "application/json");
+  // Definir o cabeçalho content-type para application/x-www-form-urlencoded
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
   
   // Enviar a requisição POST
   logInfo("Enviando dados para a API...");
