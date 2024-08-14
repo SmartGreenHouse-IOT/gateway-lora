@@ -5,8 +5,8 @@
 #include "logger.h"
 
 // Credenciais do Wi-Fi
-#define WIRELESS_SSID "WIFI-FACENS"
-#define WIRELESS_PSWD "iOt#F@c0504"
+#define WIRELESS_SSID "SSID"
+#define WIRELESS_PSWD "PSWD"
 
 // Definição das constantes para rx e tx
 #define GATEWAY_SERIAL_DEVELOPMENT "GATEWAY_SERIAL_DEVELOPMENT"
