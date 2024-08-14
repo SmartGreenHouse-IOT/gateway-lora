@@ -13,7 +13,7 @@ void setupLoRa() {
   LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ);
 
   // Configura a frequência e ativa o PABOOST (true)
-  if (!LoRa.begin(915E6, false)) {
+  if (!LoRa.begin(915E6, true)) {
     logError("Starting LoRa failed!");
     while (1);
   }
