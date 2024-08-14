@@ -14,7 +14,7 @@
 
 void setup() {
     setupLogger(); // Inicializa o logger e o display
-    logInfo("Inicianlizando Heltec...");
+    logInfo("Inicializando Heltec...");
     delay(1000);
     setupLoRa();
 
