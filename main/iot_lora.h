@@ -1,17 +1,19 @@
 #include <SPI.h>
-#include <LoRa.h>
 #include "logger.h"
+#include "heltec.h"  // Certifique-se de incluir a biblioteca Heltec
 
-#define SPI_CS    18
-#define SPI_RST   16
-#define SPI_SCK   5
-#define SPI_MISO  19
-#define SPI_MOSI  27
+#define SPI_CS 18
+#define SPI_RST 14
+#define SPI_IRQ 26
+#define SPI_SCK 5
+#define SPI_MISO 19
+#define SPI_MOSI 27
 
 void setupLoRa() {
   LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ);
 
-  if (!LoRa.begin(915E6)) {
+  // Configura a frequência e ativa o PABOOST (true)
+  if (!LoRa.begin(915E6, false)) {
     logError("Starting LoRa failed!");
     while (1);
   }
@@ -20,6 +22,8 @@ void setupLoRa() {
   LoRa.setCodingRate4(5);  // Coding rate 4/5
   LoRa.setSpreadingFactor(7);  // Spreading factor 7
   LoRa.setSignalBandwidth(125E3);  // Bandwidth 125 kHz
+
+  LoRa.receive();
 
   logSuccess("LoRa Initialization successful.");
 }
@@ -34,12 +38,10 @@ void sendPacket() {
 String receivePacket() {
   String message = "";
 
+  // logInfo("Waiting for Packet");
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
-    logInfo("Received packet with RSSI ");
-    logInfo(LoRa.packetRssi());
-    logInfo(" and SNR ");
-    logInfo(LoRa.packetSnr());
+    logInfo("Received packet with RSSI and SNR");
 
     // Lê a mensagem recebida
     while (LoRa.available()) {
