@@ -1,5 +1,5 @@
 #include <WiFi.h>
-#include "Logger.h"
+#include "logger.h"
 
 // Função para conectar ao Wi-Fi
 void connectToWiFi(const char* ssid, const char* password) {

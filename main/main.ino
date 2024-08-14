@@ -1,7 +1,7 @@
 #include "HT_SSD1306Wire.h"
-#include "Logger.h"
-#include "Connection.h"
-#include "Wireless.h"
+#include "logger.h"
+#include "connection.h"
+#include "wireless.h"
 
 // Configuração do Display OLED
 SSD1306Wire factory_display(0x3c, 500000, SDA_OLED, SCL_OLED, GEOMETRY_128_64, RST_OLED);
