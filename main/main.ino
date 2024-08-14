@@ -1,11 +1,8 @@
-#include "HT_SSD1306Wire.h"
+//#include "HT_SSD1306Wire.h"
 #include "connection.h"
 #include "wireless.h"
 #include "iot_lora.h"
 #include "logger.h"
-
-// Configuração do Display OLED
-SSD1306Wire factory_display(0x3c, 500000, SDA_OLED, SCL_OLED, GEOMETRY_128_64, RST_OLED);
 
 // Credenciais do Wi-Fi
 #define WIRELESS_SSID "WIFI-FACENS"

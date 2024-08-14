@@ -1,6 +1,6 @@
 #include <SPI.h>
+#include <LoRa.h>
 #include "logger.h"
-#include "heltec.h"
 
 #define SPI_CS 18
 #define SPI_RST 14
@@ -13,7 +13,7 @@ void setupLoRa() {
   LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ);
 
   // Configura a frequência e ativa o PABOOST (true)
-  if (!LoRa.begin(915E6, true)) {
+  if (!LoRa.begin(915E6)) {
     logError("Starting LoRa failed!");
     while (1);
   }
@@ -35,10 +35,9 @@ void sendPacket() {
   logInfo("Pacote LoRa enviado...");
 }
 
-String receivePacket() {
+String receive_Packet() {
   String message = "";
 
-  // logInfo("Waiting for Packet");
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
     logInfo("Received packet with RSSI and SNR");
@@ -47,7 +46,6 @@ String receivePacket() {
     while (LoRa.available()) {
       message += (char)LoRa.read();
     }
-
     logInfo("Received message");
     logSuccess(message);
   }

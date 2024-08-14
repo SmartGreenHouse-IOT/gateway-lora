@@ -23,10 +23,10 @@ void RecordData(String rx, String tx, String data) {
   if (httpResponseCode > 0) {
     String response = http.getString();
     logSuccess("Dados enviados com sucesso");
-    // logSuccess(response);
+    logSuccess(response);
   } else {
     logError("Erro na requisição POST");
-    // logError(http.errorToString(httpResponseCode));
+    logError(http.errorToString(httpResponseCode));
   }
   
   // Finalizar a conexão HTTP
