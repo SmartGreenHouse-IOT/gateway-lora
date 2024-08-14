@@ -27,8 +27,10 @@ void setup() {
 
 void loop() {
     String msg = receivePacket();
-    // if (isConnectedToWiFi()) {
+    if (msg!=""){
+      // if (isConnectedToWiFi()) {
         // SendSensorData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, 123, 456, 7890, 23.45, 6789, 234, 56.78);
         // RecordData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, "123456789023.45678923456.78");
-    // }
+      // }
+    }
 }
