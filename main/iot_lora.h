@@ -1,6 +1,6 @@
 #include <SPI.h>
 #include "logger.h"
-#include "heltec.h"  // Certifique-se de incluir a biblioteca Heltec
+#include "heltec.h"
 
 #define SPI_CS 18
 #define SPI_RST 14
