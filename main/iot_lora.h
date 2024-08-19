@@ -10,41 +10,40 @@
 #define SPI_MOSI 27
 
 void setupLoRa() {
-  LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ);
+  LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ); //pinagem necessária para o módulo funcionar
 
-  // Configura a frequência e ativa o PABOOST (true)
-  if (!LoRa.begin(915E6)) {
+  if (!LoRa.begin(915E6)) { //915Mhz = frequência de operação do módulo LoRa
     logError("Starting LoRa failed!");
     while (1);
   }
 
   // Configura parâmetros
-  LoRa.setCodingRate4(5);  // Coding rate 4/5
-  LoRa.setSpreadingFactor(7);  // Spreading factor 7
-  LoRa.setSignalBandwidth(125E3);  // Bandwidth 125 kHz
+  LoRa.setCodingRate4(5);  // Coding rate 4/5 = melhora a eficiência da transferência de dados. A cada dado enviado, 4 partes são informações úteis e 1 parte é para correção de erros
+  LoRa.setSpreadingFactor(7);  // Spreading factor 7 = equilibra alcance, sensibilidade, taxa de transmissão e consumo de energia. 
+  LoRa.setSignalBandwidth(125E3);  // Bandwidth 125 kHz = permite uma boa cobertura e uma taxa de transmissão razoável. Melhor resistência a interferências.
 
-  LoRa.receive();
+  LoRa.receive(); //coloca o módulo em estado de recepção
 
   logSuccess("LoRa Initialization successful.");
 }
 
-void sendPacket() {
+void sendPacket() { 
   LoRa.beginPacket();
   LoRa.print("Hello");
   LoRa.endPacket();
   logInfo("Pacote LoRa enviado...");
 }
 
-String receive_Packet() {
+String receive_Packet() { //função para ler de fato os dados que chegaram
   String message = "";
 
-  int packetSize = LoRa.parsePacket();
+  int packetSize = LoRa.parsePacket(); //função para verificar se há pacote recebido, se houver, le a mensagem do pacote e retorna o tamanho do pacote. Se não houver, retorna 0.
   if (packetSize) {
     logInfo("Received packet with RSSI and SNR");
 
-    // Lê a mensagem recebida
-    while (LoRa.available()) {
-      message += (char)LoRa.read();
+
+    while (LoRa.available()) { //LoRa.available verifica se há dados no buffer do módulo LoRa
+      message += (char)LoRa.read(); //dados são passados para char e armazenados na variável message
     }
     logInfo("Received message");
     logSuccess(message);

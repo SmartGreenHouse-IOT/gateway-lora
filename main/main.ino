@@ -13,10 +13,10 @@
 #define SLAVE_SERIAL_DEVELOPMENT "SLAVE_SERIAL_DEVELOPMENT"
 
 void setup() {
-    setupLogger(); // Inicializa o logger e o display
+    setupLogger(); // Inicializa o monitor serial
     logInfo("Inicializando Heltec...");
     delay(1000);
-    setupLoRa();
+    setupLoRa(); // Inicializa o módulo LoRa
 
     // Conectar ao Wi-Fi
     connectToWiFi(WIRELESS_SSID, WIRELESS_PSWD);

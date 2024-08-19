@@ -5,7 +5,7 @@
 
 
 void setupLogger() {
-    Serial.begin(115200);
+    Serial.begin(115200); //inicia o monitor serial
 }
 
 void logMessage(String level, String message) {
