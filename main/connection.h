@@ -2,7 +2,7 @@
 #include "logger.h"
 
 // URL da API
-#define API_ENDPOINT "https://api.intelligrow.tech/v1/iot/slaves/records/"
+#define API_ENDPOINT "https://contentor.singularityleap.com/api/register_data"
 
 void RecordData(String rx, String tx, String data) {
   HTTPClient http;
