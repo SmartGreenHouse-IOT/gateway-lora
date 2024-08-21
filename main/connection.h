@@ -34,15 +34,13 @@ void RecordData(String rx, String tx, String data) {
   logInfo("Conexão encerrada");
 }
 
-void SendSensorData(const char* rx, const char* tx, int temperature, int humidity, int total_volume_ml, float flow_rate_lps, int flow_volume_ml, int soil_moisture, float light_intensity) {
+void SendSensorData(const char* rx, const char* tx, int volume, int bateria, float latitude, float longitude, bool status) {
   // Montar a string data com os parâmetros fornecidos
-  String data = String(temperature) +
-                String(humidity) +
-                String(total_volume_ml) +
-                String(flow_rate_lps) +
-                String(flow_volume_ml) +
-                String(soil_moisture) +
-                String(light_intensity);
+  String data = String(volume) +
+                String(bateria) +
+                String(latitude) +
+                String(longitude) +
+                String(status);
 
   logInfo("Dados a serem enviados: " + data);
 
