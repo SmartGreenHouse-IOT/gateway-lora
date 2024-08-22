@@ -21,6 +21,8 @@ void setup() {
 }
 
 void loop() {
+  ContentorRecordData(23.535353, 43.353535, 98.30, 72.00);
+  delay(60000);
     String msg = receive_Packet();
     if (msg!=""){
       // if (isConnectedToWiFi()) {
