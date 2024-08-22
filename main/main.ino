@@ -14,8 +14,6 @@
 
 void setup() {
     setupLogger(); // Inicializa o monitor serial
-    logInfo("Inicializando Heltec...");
-    delay(1000);
     setupLoRa(); // Inicializa o módulo LoRa
 
     // Conectar ao Wi-Fi
