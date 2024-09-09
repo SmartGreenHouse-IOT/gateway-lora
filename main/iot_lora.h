@@ -27,11 +27,6 @@ void setupLoRa() {
   logSuccess("Inicialização do LoRa bem-sucedida.");
 }
 
-void sendPacket() { 
-  LoRa.beginPacket();
-  LoRa.print("Hello");
-  LoRa.endPacket();
-  logInfo("Pacote LoRa enviado...");
 }
 
 String receive_Packet() { //função para ler de fato os dados que chegaram
