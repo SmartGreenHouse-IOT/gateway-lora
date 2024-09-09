@@ -53,17 +53,7 @@ bool isSameData(const String& newMessage) {
     return false;
 }
 
-  int packetSize = LoRa.parsePacket(); //função para verificar se há pacote recebido, se houver, le a mensagem do pacote e retorna o tamanho do pacote. Se não houver, retorna 0.
-  if (packetSize) {
-    logInfo("Received packet with RSSI and SNR");
 
 
-    while (LoRa.available()) { //LoRa.available verifica se há dados no buffer do módulo LoRa
-      message += (char)LoRa.read(); //dados são passados para char e armazenados na variável message
     }
-    logInfo("Received message");
-    logSuccess(message);
-  }
-  
-  return message; // Retorna a mensagem recebida
 }
