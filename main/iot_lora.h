@@ -27,10 +27,20 @@ void setupLoRa() {
   logSuccess("Inicialização do LoRa bem-sucedida.");
 }
 
+String receive_Packet() {
+  String message = "";
+  int packetSize = LoRa.parsePacket();
+  
+  if (packetSize) {
+    logInfo("Pacote recebido com tamanho: " + String(packetSize));
+    while (LoRa.available()) {
+      message += (char)LoRa.read();
+    }
+  }
+  
+  return message; 
 }
 
-String receive_Packet() { //função para ler de fato os dados que chegaram
-  String message = "";
 
   int packetSize = LoRa.parsePacket(); //função para verificar se há pacote recebido, se houver, le a mensagem do pacote e retorna o tamanho do pacote. Se não houver, retorna 0.
   if (packetSize) {
