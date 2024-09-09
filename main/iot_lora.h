@@ -10,21 +10,21 @@
 #define SPI_MOSI 27
 
 void setupLoRa() {
-  LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ); //pinagem necessária para o módulo funcionar
+  LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ); // Pinagem necessária para o módulo funcionar
 
-  if (!LoRa.begin(915E6)) { //915Mhz = frequência de operação do módulo LoRa
-    logError("Starting LoRa failed!");
+  if (!LoRa.begin(915E6)) { // 915MHz = frequência de operação do módulo LoRa
+    logError("Falha ao iniciar LoRa!");
     while (1);
   }
 
   // Configura parâmetros
-  LoRa.setCodingRate4(5);  // Coding rate 4/5 = melhora a eficiência da transferência de dados. A cada dado enviado, 4 partes são informações úteis e 1 parte é para correção de erros
-  LoRa.setSpreadingFactor(7);  // Spreading factor 7 = equilibra alcance, sensibilidade, taxa de transmissão e consumo de energia. 
-  LoRa.setSignalBandwidth(125E3);  // Bandwidth 125 kHz = permite uma boa cobertura e uma taxa de transmissão razoável. Melhor resistência a interferências.
+  LoRa.setCodingRate4(5);          // Coding rate 4/5
+  LoRa.setSpreadingFactor(7);      // Spreading factor 7
+  LoRa.setSignalBandwidth(125E3);  // Bandwidth 125 kHz
 
-  LoRa.receive(); //coloca o módulo em estado de recepção
+  LoRa.receive(); // Coloca o módulo em estado de recepção
 
-  logSuccess("LoRa Initialization successful.");
+  logSuccess("Inicialização do LoRa bem-sucedida.");
 }
 
 void sendPacket() { 
