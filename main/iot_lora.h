@@ -60,6 +60,34 @@ bool processReceivedData(float& latitude, float& longitude, float& bateria, floa
             return false;  // Ignora o processamento se o dado for o mesmo
         }
 
+        int firstComma = msg.indexOf(',');
+        int secondComma = msg.indexOf(',', firstComma + 1);
+        int thirdComma = msg.indexOf(',', secondComma + 1);
 
+        if (firstComma == -1 || secondComma == -1 || thirdComma == -1) {
+            logError("Formato de mensagem inválido: " + msg);
+            return false;
+        }
+
+        // Extrai cada parte da string
+        String batStr = msg.substring(0, firstComma);
+        String volStr = msg.substring(firstComma + 1, secondComma);
+        String latStr = msg.substring(secondComma + 1, thirdComma);
+        String lonStr = msg.substring(thirdComma + 1);
+
+        // Converte para os tipos de dados corretos
+        bateria = batStr.toFloat();
+        volume = volStr.toFloat();
+        latitude = latStr.toFloat();
+        longitude = lonStr.toFloat();
+
+        logInfo("Dados processados com sucesso:");
+        logInfo("Bateria: " + String(bateria, 2));
+        logInfo("Volume: " + String(volume, 2));
+        logInfo("Latitude: " + String(latitude, 6));
+        logInfo("Longitude: " + String(longitude, 6));
+
+        return true;
     }
+    return false;
 }
