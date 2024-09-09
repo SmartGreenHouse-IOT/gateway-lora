@@ -9,6 +9,9 @@
 #define SPI_MISO 19
 #define SPI_MOSI 27
 
+// Variável global para armazenar o último pacote recebido
+String lastReceivedMessage = "";
+
 void setupLoRa() {
   LoRa.setPins(SPI_CS, SPI_RST, SPI_IRQ); // Pinagem necessária para o módulo funcionar
 
@@ -41,6 +44,14 @@ String receive_Packet() {
   return message; 
 }
 
+bool isSameData(const String& newMessage) {
+    if (newMessage == lastReceivedMessage) {
+        logInfo("Mensagem duplicada recebida, ignorando...");
+        return true;  // Indica que o dado é o mesmo
+    }
+    lastReceivedMessage = newMessage;  // Atualiza para o novo pacote recebido
+    return false;
+}
 
   int packetSize = LoRa.parsePacket(); //função para verificar se há pacote recebido, se houver, le a mensagem do pacote e retorna o tamanho do pacote. Se não houver, retorna 0.
   if (packetSize) {
