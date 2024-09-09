@@ -21,6 +21,17 @@ void setup() {
 }
 
 void loop() {
+    float latitude, longitude, bateria, volume;
+
+    // Processa dados recebidos via LoRa
+    if (processReceivedData(latitude, longitude, bateria, volume)) {
+        // Se os dados foram processados corretamente, enviar para a API
+        logInfo("Enviando dados processados para a API...");
+        ContentorRecordData(latitude, longitude, bateria, volume);
+    } else {
+        // Remover log desnecessário para evitar poluição do console
+    }
+    
     String msg = receive_Packet();
     if (msg!=""){
       // if (isConnectedToWiFi()) {
