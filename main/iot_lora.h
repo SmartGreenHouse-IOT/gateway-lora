@@ -53,6 +53,12 @@ bool isSameData(const String& newMessage) {
     return false;
 }
 
+bool processReceivedData(float& latitude, float& longitude, float& bateria, float& volume) {
+    String msg = receive_Packet();
+    if (msg != "") {
+        if (isSameData(msg)) {
+            return false;  // Ignora o processamento se o dado for o mesmo
+        }
 
 
     }
