@@ -27,18 +27,18 @@ void loop() {
     if (processReceivedData(latitude, longitude, bateria, volume)) {
         // Se os dados foram processados corretamente, enviar para a API
         logInfo("Enviando dados processados para a API...");
-        ContentorRecordData(latitude, longitude, bateria, volume);
+        contentorRecordData(latitude, longitude, bateria, volume);
     } else {
         // Remover log desnecessário para evitar poluição do console
     }
     
     // Comentado para controle
     /*
-    String msg = receive_Packet();
+    String msg = receivePacket();
     if (msg!=""){
       if (isConnectedToWiFi()) {
-        SendSensorData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, 123, 456, 7890, 23.45, 6789, 234, 56.78);
-        RecordData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, "123456789023.45678923456.78");
+        sendSensorData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, 123, 456, 7890, 23.45, 6789, 234, 56.78);
+        recordData(GATEWAY_SERIAL_DEVELOPMENT, SLAVE_SERIAL_DEVELOPMENT, "123456789023.45678923456.78");
       }
     }
     */

@@ -5,7 +5,7 @@
 #define API_ENDPOINT "https://api.intelligrow.tech/v1/iot/slaves/records/"
 #define CONTENTOR_ENDPOINT "https://contentor.singularityleap.com/api/register_data"
 
-void RecordData(String rx, String tx, String data) {
+void recordData(String rx, String tx, String data) {
   HTTPClient http;
   
   logInfo("Conectando ao servidor...");
@@ -35,7 +35,7 @@ void RecordData(String rx, String tx, String data) {
   logInfo("Conexão encerrada");
 }
 
-int ContentorRecordData(float latitude, float longitude, float bateria, float volume) {
+int contentorRecordData(float latitude, float longitude, float bateria, float volume) {
   HTTPClient http;
 
   logInfo("Conectando com a API...");
@@ -65,7 +65,7 @@ int ContentorRecordData(float latitude, float longitude, float bateria, float vo
   return httpResponseCode;
 }
 
-void SendSensorData(const char* rx, const char* tx, int temperature, int humidity, int total_volume_ml, float flow_rate_lps, int flow_volume_ml, int soil_moisture, float light_intensity) {
+void sendSensorData(const char* rx, const char* tx, int temperature, int humidity, int total_volume_ml, float flow_rate_lps, int flow_volume_ml, int soil_moisture, float light_intensity) {
   // Montar a string data com os parâmetros fornecidos
   String data = String(temperature) +
                 String(humidity) +
@@ -77,5 +77,5 @@ void SendSensorData(const char* rx, const char* tx, int temperature, int humidit
 
   logInfo("Dados a serem enviados: " + data);
 
-  RecordData(rx, tx, data);
+  recordData(rx, tx, data);
 }

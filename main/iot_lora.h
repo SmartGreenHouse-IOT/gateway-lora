@@ -30,7 +30,7 @@ void setupLoRa() {
   logSuccess("Inicialização do LoRa bem-sucedida.");
 }
 
-String receive_Packet() {
+String receivePacket() {
   String message = "";
   int packetSize = LoRa.parsePacket();
   
@@ -54,7 +54,7 @@ bool isSameData(const String& newMessage) {
 }
 
 bool processReceivedData(float& latitude, float& longitude, float& bateria, float& volume) {
-    String msg = receive_Packet();
+    String msg = receivePacket();
     if (msg != "") {
         if (isSameData(msg)) {
             return false;  // Ignora o processamento se o dado for o mesmo
