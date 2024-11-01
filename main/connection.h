@@ -41,15 +41,22 @@ int contentorRecordData(float latitude, float longitude, float bateria, float vo
   logInfo("Conectando com a API...");
   http.begin(CONTENTOR_ENDPOINT);
 
-  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+  // Definir o cabeçalho content-type para application/json
+  http.addHeader("Content-Type", "application/json");
 
-  String payload = "latitude=" + String(latitude, 6) +
-                 "&longitude=" + String(longitude, 6) +
-                 "&bateria=" + String(bateria, 2) +
-                 "&volume=" + String(volume, 2);
+  // Montar o JSON com os dados
+  String payload = "{\"bateria\":" + String(bateria, 2) +
+                  ",\"latitude\":" + String(latitude, 6) +
+                  ",\"longitude\":" + String(longitude, 6) +
+                  ",\"volume\":" + String(volume, 2) + "}";
 
+  logInfo("Payload: " + payload);
+
+  // Enviar a requisição POST
   int httpResponseCode = http.POST(payload);
 
+  logInfo("Código de resposta HTTP: " + String(httpResponseCode));
+  
   if (httpResponseCode > 0) {
     String response = http.getString();
     logSuccess("Dados enviados com sucesso");
@@ -59,6 +66,7 @@ int contentorRecordData(float latitude, float longitude, float bateria, float vo
     logError(http.errorToString(httpResponseCode));
   }
 
+  // Finalizar a conexão HTTP
   http.end();
   logInfo("Conexão encerrada");
 
