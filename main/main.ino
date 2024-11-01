@@ -24,10 +24,10 @@ void loop() {
     float latitude, longitude, bateria, volume;
 
     // Processa dados recebidos via LoRa
-    if (processReceivedData(latitude, longitude, bateria, volume)) {
+    if (processReceivedData(bateria, latitude, longitude, volume)) {
         // Se os dados foram processados corretamente, enviar para a API
         logInfo("Enviando dados processados para a API...");
-        contentorRecordData(latitude, longitude, bateria, volume);
+        contentorRecordData(bateria, latitude, longitude, volume);
     } else {
         // Remover log desnecessário para evitar poluição do console
     }
